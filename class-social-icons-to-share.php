@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Social Icons to Share
  * Plugin URI: https://antoniomadera.com
- * Version: 1.1
+ * Version: 1.2
  * Description:
  * Author: Antonio Madera
  * Author URI: https://antoniomadera.com
@@ -40,7 +40,8 @@ class Social_Icons_To_Share {
     private const PREFIX_VARNAME = 'sits_';
     private const PREFIX_VARNAMES = [
         self::PREFIX_VARNAME . 'top_',
-        self::PREFIX_VARNAME . 'bottom_'
+        self::PREFIX_VARNAME . 'bottom_',
+        self::PREFIX_VARNAME . 'fixed_'
     ];
     private const DB_VARNAME = 'social_icons_to_share_general_options';
     private const VARNAME_FOR_ADMIN_TEMPLATE = self::PREFIX_VARNAME . 'options';
@@ -161,6 +162,7 @@ class Social_Icons_To_Share {
         $this->check_and_save_options();
         $this->load_options_from_db_in_template();
 
+        set_query_var( 'locations_name', self::PREFIX_VARNAMES );
         set_query_var( 'shortcode_' . self::LIGHT_STRING, self::SHORTCODE_LIGHT_NAME );
         set_query_var( 'shortcode_' . self::DARK_STRING, self::SHORTCODE_DARK_NAME );
         set_query_var( 'shortcode_' . self::COLOR_STRING, self::SHORTCODE_COLOR_NAME );
@@ -176,6 +178,7 @@ class Social_Icons_To_Share {
                 $post_type = get_post_type();
                 $top_key = self::PREFIX_VARNAMES[ 0 ] . $post_type;
                 $bottom_key = self::PREFIX_VARNAMES[ 1 ] . $post_type;
+                $fixed_key = self::PREFIX_VARNAMES[ 2 ] . $post_type;
 
                 if ( isset( $options[ $top_key ] ) && $options[ $top_key ] !== 'hidden' && isset( self::MODE_TO_ADD_CONTENT[ $options[ $top_key ] ] ) ) {
                     $content = self::MODE_TO_ADD_CONTENT[ $options[ $top_key ] ] . $content;
@@ -184,6 +187,11 @@ class Social_Icons_To_Share {
 
                 if ( isset( $options[ $bottom_key ] ) && $options[ $bottom_key ] !== 'hidden' && isset( self::MODE_TO_ADD_CONTENT[ $options[ $bottom_key ] ] ) ) {
                     $content .= self::MODE_TO_ADD_CONTENT[ $options[ $bottom_key ] ];
+                    $enqueue_js_assets = true;
+                }
+
+                if ( isset( $options[ $fixed_key ] ) && $options[ $fixed_key ] !== 'hidden' && isset( self::MODE_TO_ADD_CONTENT[ $options[ $fixed_key ] ] ) ) {
+                    $content .= '<div class="social-icons-to-share-fixed">' . self::MODE_TO_ADD_CONTENT[ $options[ $fixed_key ] ] . '</div>';
                     $enqueue_js_assets = true;
                 }
 

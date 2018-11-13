@@ -117,3 +117,16 @@ i.icon[class^="icon-"], [class^="icon-"], [class*=" icon-"] {
 .social-icons-to-share-dark i {
     color: #444;
 }
+.social-icons-to-share-fixed {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    margin: auto;
+    padding: 15px 0 10px;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 6px -3px #4e4e4e;
+}
+.social-icons-to-share-fixed > div {
+    margin: auto;
+}

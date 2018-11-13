@@ -21,3 +21,5 @@ From WordPress Admin you can choice the kind of style and location of buttons fo
 ### 1.1
 * WhatsApp share option added
 * Color icons mode added
+### 1.2
+* Fixed bottom page location added

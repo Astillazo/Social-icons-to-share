@@ -41,62 +41,47 @@
 <form method="post">
 <?php
 
-$founds = [];
-
-if ( isset( $sits_options ) ) :
-    foreach( $sits_options as $varname => $value ):
-        $post_type_found = preg_replace( '/(sits_top_|sits_bottom_)/i', '', $varname );
-        $name = $post_type_found;
-        $post_type_object = get_post_type_object( $post_type_found );
-
-        if ( $post_type_object instanceof WP_Post_Type ) {
-            $name = $post_type_object->label;
-        }
-
-        if ( ! in_array( $post_type_found, $founds ) ) :
-            array_push( $founds, $post_type_found );
-
-?>
-<h3><?php echo ucfirst( $name ); ?>:</h3>
-<?php
-        endif;
-?>
-<hr />
-<?php if ( strpos( $varname , '_top_' ) !== false ): ?>Entre el título y el texto<?php else: ?>Al final del texto<?php endif; ?>
-<select name="<?php echo $varname; ?>" value="<?php echo $value; ?>">
-    <option value="hidden"<?php if ( $value === 'hidden' ): echo 'selected'; endif; ?>>No mostrar</option>
-    <option value="light"<?php if ( $value === 'light' ): echo 'selected'; endif; ?>>Versión Light</option>
-    <option value="dark"<?php if ( $value === 'dark' ): echo 'selected'; endif; ?>>Versión Dark</option>
-    <option value="color"<?php if ( $value === 'color' ): echo 'selected'; endif; ?>>Versión Color</option>
-</select>
-
-<?php
-
-    endforeach ;
-endif ;
-
 foreach ( get_post_types( [ 'public' => true ] ) as $post_type_value) :
-    if ( $post_type_value !== 'attachment' && ! in_array( $post_type_value, $founds ) ) :
-    ?>
-<h3><?php echo ucfirst( $post_type_value ); ?>:</h3>
-<hr />
-Entre el título y el texto
-<select name="<?php echo 'sits_top_' . $post_type_value; ?>">
-    <option value="hidden">No mostrar</option>
-    <option value="light">Versión Light</option>
-    <option value="dark">Versión Dark</option>
-    <option value="color">Versión Color</option>
-</select>
-<hr />
-Al final del texto
-<select name="<?php echo 'sits_bottom_' . $post_type_value; ?>">
-    <option value="hidden">No mostrar</option>
-    <option value="light">Versión Light</option>
-    <option value="dark">Versión Dark</option>
-    <option value="color">Versión Color</option>
-</select>
+    if ( $post_type_value !== 'attachment' ) :
 
-    <?php
+?>
+<h3><?php echo ucfirst( $post_type_value ); ?>:</h3>
+<?php
+        $text_from_location = [
+            'sits_top_' => 'Entre el título y el texto',
+            'sits_bottom_' => 'Al final del texto',
+            'sits_fixed_' => 'Fijo en la parte baja de la pantalla'
+        ];
+
+        foreach( $locations_name as $location ) :
+            ?>
+            <hr />
+            <?php
+            echo $text_from_location[ $location ];
+            $key_index = $location . $post_type_value;
+
+            if ( isset( $sits_options ) && isset( $sits_options[ $key_index ] ) ) :
+?>
+
+    <select name="<?php echo $key_index; ?>" value="<?php echo $sits_options[ $key_index ]; ?>">
+        <option value="hidden"<?php if ( $sits_options[ $key_index ] === 'hidden' ): echo 'selected'; endif; ?>>No mostrar</option>
+        <option value="light"<?php if ( $sits_options[ $key_index ] === 'light' ): echo 'selected'; endif; ?>>Versión Light</option>
+        <option value="dark"<?php if ( $sits_options[ $key_index ] === 'dark' ): echo 'selected'; endif; ?>>Versión Dark</option>
+        <option value="color"<?php if ( $sits_options[ $key_index ] === 'color' ): echo 'selected'; endif; ?>>Versión Color</option>
+    </select>
+
+            <?php else : ?>
+
+    <select name="<?php echo $key_index; ?>">
+        <option value="hidden">No mostrar</option>
+        <option value="light">Versión Light</option>
+        <option value="dark">Versión Dark</option>
+        <option value="color">Versión Color</option>
+    </select>
+
+<?php
+            endif ;
+        endforeach ;
     endif ;
 endforeach ;
 ?>
