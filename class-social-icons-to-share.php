@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Social Icons to Share
  * Plugin URI: https://antoniomadera.com
- * Version: 1.0
+ * Version: 1.1
  * Description:
  * Author: Antonio Madera
  * Author URI: https://antoniomadera.com
@@ -18,18 +18,21 @@ class Social_Icons_To_Share {
     private const HOOK_ENQUEUE_FRONT_SCRIPTS = 'wp_enqueue_scripts';
     private const HOOK_ENQUEUE_ADMIN_SCRIPTS = 'admin_enqueue_scripts';
     private const TEMPLATES_FOLDER = 'templates/';
-    private const ICONS_LIGHT_TEMPLATE = 'frontend/social-icons-light-template.php';
-    private const ICONS_DARK_TEMPLATE = 'frontend/social-icons-dark-template.php';
+    private const LIGHT_STRING = 'light';
+    private const DARK_STRING = 'dark';
+    private const COLOR_STRING = 'color';
+    private const ICONS_LIGHT_TEMPLATE = 'frontend/social-icons-' . self::LIGHT_STRING . '-template.php';
+    private const ICONS_DARK_TEMPLATE = 'frontend/social-icons-' . self::DARK_STRING . '-template.php';
+    private const ICONS_COLOR_TEMPLATE = 'frontend/social-icons-' . self::COLOR_STRING . '-template.php';
     private const ASSETS_FOLDER = 'assets/';
     private const JS_FOLDER = self::ASSETS_FOLDER . 'js/';
     private const CSS_FOLDER = self::ASSETS_FOLDER . 'css/';
     private const PREFIX_PLUGIN_STRING = 'social-icons-to-share';
     private const JS_FRONTEND_FILE = self::PREFIX_PLUGIN_STRING . '-min.js';
     private const CSS_FRONTEND_FILE = self::PREFIX_PLUGIN_STRING . '-min.css';
-    private const LIGHT_STRING = 'light';
-    private const DARK_STRING = 'dark';
     private const SHORTCODE_LIGHT_NAME = self::PREFIX_PLUGIN_STRING . '-' . self::LIGHT_STRING;
     private const SHORTCODE_DARK_NAME = self::PREFIX_PLUGIN_STRING . '-' . self::DARK_STRING;
+    private const SHORTCODE_COLOR_NAME = self::PREFIX_PLUGIN_STRING . '-' . self::COLOR_STRING;
     private const MENU_ICON = 'dashicons-share';
     private const MENU_CAPABILITY = 'manage_options';
     private const MENU_SLUG = 'social-icons-to-share';
@@ -43,7 +46,8 @@ class Social_Icons_To_Share {
     private const VARNAME_FOR_ADMIN_TEMPLATE = self::PREFIX_VARNAME . 'options';
     private const MODE_TO_ADD_CONTENT = [
         self::LIGHT_STRING => '[' . self::SHORTCODE_LIGHT_NAME . ']',
-        self::DARK_STRING => '[' . self::SHORTCODE_DARK_NAME . ']'
+        self::DARK_STRING => '[' . self::SHORTCODE_DARK_NAME . ']',
+        self::COLOR_STRING => '[' . self::SHORTCODE_COLOR_NAME . ']'
     ];
 
     private function load_template( string $template_filename, bool $get_string = false ) {
@@ -119,8 +123,9 @@ class Social_Icons_To_Share {
     }
 
     public function add_shortcodes() {
-        add_shortcode( self::SHORTCODE_LIGHT_NAME, [ $this, 'shortcode_light' ] );
-        add_shortcode( self::SHORTCODE_DARK_NAME, [ $this, 'shortcode_dark' ] );
+        add_shortcode( self::SHORTCODE_LIGHT_NAME, [ $this, 'shortcode_' . self::LIGHT_STRING ] );
+        add_shortcode( self::SHORTCODE_DARK_NAME, [ $this, 'shortcode_' . self::DARK_STRING ] );
+        add_shortcode( self::SHORTCODE_COLOR_NAME, [ $this, 'shortcode_' . self::COLOR_STRING ] );
     }
 
     public function shortcode_light() {
@@ -133,6 +138,12 @@ class Social_Icons_To_Share {
         $this->add_assets();
 
         return $this->load_template( self::ICONS_DARK_TEMPLATE, true );
+    }
+
+    public function shortcode_color() {
+        $this->add_assets();
+
+        return $this->load_template( self::ICONS_COLOR_TEMPLATE, true );
     }
 
     public function add_admin_menu_to_dashboard() {
@@ -150,8 +161,9 @@ class Social_Icons_To_Share {
         $this->check_and_save_options();
         $this->load_options_from_db_in_template();
 
-        set_query_var( 'shortcode_light', self::SHORTCODE_LIGHT_NAME );
-        set_query_var( 'shortcode_dark', self::SHORTCODE_DARK_NAME );
+        set_query_var( 'shortcode_' . self::LIGHT_STRING, self::SHORTCODE_LIGHT_NAME );
+        set_query_var( 'shortcode_' . self::DARK_STRING, self::SHORTCODE_DARK_NAME );
+        set_query_var( 'shortcode_' . self::COLOR_STRING, self::SHORTCODE_COLOR_NAME );
         $this->load_template( self::ADMIN_PAGE );
     }
 

@@ -6,7 +6,7 @@
 .sits-info-list li {
     margin: 10px auto;
 }
-.sits-info-list li .social-icons-to-share-light, .sits-info-list li .social-icons-to-share-dark {
+.sits-info-list li .social-icons-to-share-light, .sits-info-list li .social-icons-to-share-dark, .sits-info-list li .social-icons-to-share-color {
     text-align: left;
 }
 .sits-shortcode {
@@ -21,7 +21,7 @@
 
 <h2>Ajustes de iconos sociales para compartir contenido</h2>
 
-<p>Hay dos maneras de poner incluir los iconos sociales en un página, para ellos puedes usar los siguiente shortcodes:</p>
+<p>Hay tres maneras de poner incluir los iconos sociales en un página, para ellos puedes usar los siguiente shortcodes:</p>
 
 <ul class="sits-info-list">
     <li>
@@ -29,6 +29,9 @@
     </li>
     <li>
         La versión con dark usando el shortcode <span class="sits-shortcode">[<?php echo $shortcode_dark; ?>]</span> en tu contenido. <?php echo do_shortcode( '[' . $shortcode_dark . ']' ); ?>
+    </li>
+    <li>
+        La versión con color usando el shortcode <span class="sits-shortcode">[<?php echo $shortcode_color; ?>]</span> en tu contenido. <?php echo do_shortcode( '[' . $shortcode_color . ']' ); ?>
     </li>
 </ul>
 
@@ -64,6 +67,7 @@ if ( isset( $sits_options ) ) :
     <option value="hidden"<?php if ( $value === 'hidden' ): echo 'selected'; endif; ?>>No mostrar</option>
     <option value="light"<?php if ( $value === 'light' ): echo 'selected'; endif; ?>>Versión Light</option>
     <option value="dark"<?php if ( $value === 'dark' ): echo 'selected'; endif; ?>>Versión Dark</option>
+    <option value="color"<?php if ( $value === 'color' ): echo 'selected'; endif; ?>>Versión Color</option>
 </select>
 
 <?php
@@ -81,6 +85,7 @@ Entre el título y el texto
     <option value="hidden">No mostrar</option>
     <option value="light">Versión Light</option>
     <option value="dark">Versión Dark</option>
+    <option value="color">Versión Color</option>
 </select>
 <hr />
 Al final del texto
@@ -88,6 +93,7 @@ Al final del texto
     <option value="hidden">No mostrar</option>
     <option value="light">Versión Light</option>
     <option value="dark">Versión Dark</option>
+    <option value="color">Versión Color</option>
 </select>
 
     <?php

@@ -14,9 +14,13 @@
 	var share_with_email = function() {
 		window.location = 'mailto:?&subject=' + title + '&body=' + current_url;
 	};
+	var share_with_whatsapp = function() {
+		window.location = 'whatsapp://send?text=' + title + ' ' + current_url;
+	};
 
 	$( '.social-icons-to-share-in-facebook' ).bind( 'click', share_with_facebook );
 	$( '.social-icons-to-share-in-twitter' ).bind( 'click', share_with_twitter );
 	$( '.social-icons-to-share-in-linkedin' ).bind( 'click', share_with_linkedin );
 	$( '.social-icons-to-share-in-email' ).bind( 'click', share_with_email );
+	$( '.social-icons-to-share-in-whatsapp' ).bind( 'click', share_with_whatsapp );
 } )( jQuery );

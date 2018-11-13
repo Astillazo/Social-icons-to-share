@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'social-icons-to-share';
-    src:  url('../fonts/social-icons-to-share.eot?7irov9');
-        src:  url('../fonts/social-icons-to-share.eot?7irov9#iefix') format('embedded-opentype'),
-        url('../fonts/social-icons-to-share.ttf?7irov9') format('truetype'),
-        url('../fonts/social-icons-to-share.woff?7irov9') format('woff'),
-        url('../fonts/social-icons-to-share.svg?7irov9#social-icons-to-share') format('svg');
+    src:  url('../fonts/social-icons-to-share.eot?zh4amt');
+    src:  url('../fonts/social-icons-to-share.eot?zh4amt#iefix') format('embedded-opentype'),
+        url('../fonts/social-icons-to-share.ttf?zh4amt') format('truetype'),
+        url('../fonts/social-icons-to-share.woff?zh4amt') format('woff'),
+        url('../fonts/social-icons-to-share.svg?zh4amt#social-icons-to-share') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -24,8 +24,53 @@ i.icon[class^="icon-"], [class^="icon-"], [class*=" icon-"] {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-gmail {
+    color: #d14836;
+}
+.icon-gmail:before {
+    content: "\e900";
+}
+.icon-telegram {
+    color: #2ca5e0;
+}
+.icon-telegram:before {
+    content: "\e901";
+}
+.icon-facebook-blue {
+    color: #3b5998;
+}
+.icon-facebook-blue:before {
+    content: "\e903";
+}
+.icon-whatsapp {
+    color: #25d366;
+}
+.icon-whatsapp:before {
+    content: "\e904";
+}
+.icon-microsoftoutlook {
+    color: #0072c6;
+}
+.icon-microsoftoutlook:before {
+    content: "\e905";
+}
+.icon-linkedin-blue {
+    color: #0077b5;
+}
+.icon-linkedin-blue:before {
+    content: "\e906";
+}
+.icon-twitter-blue {
+    color: #1da1f2;
+}
+.icon-twitter-blue:before {
+    content: "\e907";
+}
 .icon-linkedin:before {
     content: "\e902";
+}
+.icon-mail-with-circle:before {
+    content: "\e91a";
 }
 .icon-linkedin-with-circle:before {
     content: "\e959";
@@ -42,22 +87,33 @@ i.icon[class^="icon-"], [class^="icon-"], [class*=" icon-"] {
 .icon-twitter-with-circle:before {
     content: "\e963";
 }
-.icon-mail-with-circle:before {
-    content: "\e91a";
-}
 .icon-inbox:before {
     content: "\ea7e";
 }
+.icon-mail:before {
+    content: "\ea83";
+}
+.icon-paper-plane:before {
+    content: "\ea8b";
+}
 
-
-.social-icons-to-share-light, .social-icons-to-share-dark {
+.social-icons-to-share-light, .social-icons-to-share-dark, .social-icons-to-share-color {
     text-align: center;
     margin: 2rem auto;
 }
-.social-icons-to-share-light i, .social-icons-to-share-dark i {
+.social-icons-to-share-light i, .social-icons-to-share-dark i, .social-icons-to-share-color i {
     font-size: 40px;
     cursor: pointer;
 }
+.social-icons-to-share-color i {
+    margin: auto 0.3rem;
+}
 .social-icons-to-share-dark i {
     font-size: 50px;
+}
+.social-icons-to-share-light i {
+    color: #444;
+}
+.social-icons-to-share-dark i {
+    color: #444;
 }
