@@ -3,7 +3,7 @@
 * **License:** GPLv2 or later
 * **License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 * **Requires at least:** WordPress 4.9.8, PHP 7.2
-* **Tested up to:** WordPress 4.9.8, PHP 7.2
+* **Tested up to:** WordPress 4.9.8, PHP 7.4
 
 ## Description
 This plugin adds into your posts types the feature to share your content by email, Facebook, Twitter, WhatsApp and Linkedin from buttons. You can add those buttons manually or automatically in several locations.
@@ -23,3 +23,5 @@ From WordPress Admin you can choice the kind of style and location of buttons fo
 * Color icons mode added
 ### 1.2
 * Fixed bottom page location added
+### 1.3
+* Sharing to WhatsApp is working for desktop web

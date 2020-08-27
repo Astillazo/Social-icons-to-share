@@ -15,7 +15,7 @@
 		window.location = 'mailto:?&subject=' + title + '&body=' + current_url;
 	};
 	var share_with_whatsapp = function() {
-		window.location = 'whatsapp://send?text=' + title + ' ' + current_url;
+		window.location = 'https://api.whatsapp.com/send?text=' + title + ' ' + current_url;
 	};
 
 	$( '.social-icons-to-share-in-facebook' ).bind( 'click', share_with_facebook );

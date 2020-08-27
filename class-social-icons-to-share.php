@@ -1,8 +1,8 @@
 <?php
-/*
+/**
  * Plugin Name: Social Icons to Share
  * Plugin URI: https://antoniomadera.com
- * Version: 1.2
+ * Version: 1.3
  * Description:
  * Author: Antonio Madera
  * Author URI: https://antoniomadera.com
